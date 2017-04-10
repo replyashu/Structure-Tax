@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Structure Tax</string>
+    <string name="title_home">Save My Tax</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Global</string>
+    <string name="title_about">About</string>
+    <string name="enter_ctc">Enter Your CTC(Excluding Bonus)</string>
+
+    <string-array name="employees">
+        <item>Employee Count</item>
+        <item>Less than 10</item>
+        <item>Greater than 10</item>
+        <item>Greater than 50</item>
+        <item>Greater than 100</item>
+        <item>Greater than 500</item>
+        <item>Greater than 1000</item>
+        <item>Greater than 5000</item>
+        <item>Greater than 10000</item>
+
+    </string-array>
+</resources>
