@@ -42,9 +42,15 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.txtComponentName.setText(components.get(position).getComponentName());
 
-
         holder.txtMonthly.setText("₹ " + String.format("%.2f", components.get(position).getMonthly()));
         holder.txtYearly.setText("₹ " + String.format("%.2f",components.get(position).getYearly()));
+        boolean isProvable = components.get(position).isProof();
+        if(isProvable) {
+            holder.imgProof.setVisibility(View.VISIBLE);
+            holder.imgProof.setImageResource(R.drawable.proof);
+        }
+        else
+            holder.imgProof.setVisibility(View.GONE);
 
     }
 

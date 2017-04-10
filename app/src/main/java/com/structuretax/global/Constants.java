@@ -18,4 +18,6 @@ public class Constants {
     public static final String Uniform = "Uniform";
     public static final String Health = "Health and Gym";
     public static final String Special = "Special";
+    public static final String Lta = "LTA";
+    public static final String Net = "NET";
 }
