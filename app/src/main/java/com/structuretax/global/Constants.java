@@ -20,4 +20,5 @@ public class Constants {
     public static final String Special = "Special";
     public static final String Lta = "LTA";
     public static final String Net = "NET";
+    public static final String Pf = "PF";
 }

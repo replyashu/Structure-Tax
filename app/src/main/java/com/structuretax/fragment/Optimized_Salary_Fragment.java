@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.structuretax.R;
 import com.structuretax.adapter.SalarySplitAdapter;
@@ -22,13 +23,15 @@ import java.util.List;
  * Created by apple on 08/04/17.
  */
 
-public class Optimized_Salary_Fragment extends Fragment{
+public class Optimized_Salary_Fragment extends Fragment implements View.OnClickListener{
     private RecyclerView recyclerBreakup;
+    private Button btnOptimize;
     List<Components> components;
     Controller appController;
     Intent intent;
     double salary;
     boolean pf;
+    private int optimize;
 
     public Optimized_Salary_Fragment(){
 
@@ -44,8 +47,6 @@ public class Optimized_Salary_Fragment extends Fragment{
             pf = bundle.getBoolean("pf");
         }
 
-
-        Log.d("salarypf", salary + "" + pf + "");
     }
 
     @Nullable
@@ -54,14 +55,28 @@ public class Optimized_Salary_Fragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_optimized, container, false);
         initializeLayoutVariables(view);
 
-        recyclerBreakup.setAdapter(new SalarySplitAdapter(appController.salaryBreak(salary, pf)));
+        recyclerBreakup.setAdapter(new SalarySplitAdapter(appController.salaryBreak(salary, pf, optimize)));
         return view;
     }
 
     private void initializeLayoutVariables(View v){
         recyclerBreakup = (RecyclerView) v.findViewById(R.id.recyclerBreakup);
         recyclerBreakup.setLayoutManager(new LinearLayoutManager(getActivity()));
+        btnOptimize = (Button) v.findViewById(R.id.btnOptimize);
+        btnOptimize.setOnClickListener(this);
+        optimize = 40;
     }
 
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if(id == R.id.btnOptimize){
+            optimize = 50;
+            SalarySplitAdapter adapter = new SalarySplitAdapter(appController.salaryBreak(salary, pf, optimize));
+            recyclerBreakup.invalidate();
+            recyclerBreakup.setAdapter(adapter);
+        }
+    }
 }
