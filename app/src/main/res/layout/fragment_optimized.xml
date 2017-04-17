@@ -28,11 +28,29 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/btnOptimize"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Optimize Salary"/>
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnOptimize"
+                    android:layout_width="wrap_content"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="Optimize Salary" />
+
+                <Button
+                    android:id="@+id/btnTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Compute TAX"/>
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </ScrollView>

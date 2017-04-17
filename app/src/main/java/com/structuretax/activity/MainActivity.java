@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.structuretax.R;
+import com.structuretax.fragment.Given_Salary_Fragment;
 import com.structuretax.fragment.Optimized_Salary_Fragment;
 import com.structuretax.global.Controller;
 
@@ -78,9 +79,11 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
         spinEmployeeCount = (AppCompatSpinner) findViewById(R.id.spinEmployeeCount);
         editCtcSalary = (EditText) findViewById(R.id.editSalaryCtc);
         btnStructure = (Button) findViewById(R.id.btnStructure);
+        btnSalaryGiven = (Button) findViewById(R.id.btnGiven);
 
         spinEmployeeCount.setOnItemSelectedListener(this);
         btnStructure.setOnClickListener(this);
+        btnSalaryGiven.setOnClickListener(this);
 
         appController = Controller.getInstance();
     }
@@ -120,6 +123,22 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
 
                 computeSalary(ctcSalary, isPfEligible);
                 Log.d("salary", ctcSalary + " " + isPfEligible);
+                break;
+
+            case R.id.btnGiven:
+                Fragment fragment = new Given_Salary_Fragment();
+
+                FrameLayout fragmentLayout = new FrameLayout(this);
+// set the layout params to fill the activity
+                fragmentLayout.setLayoutParams(new  ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+// set an id to the layout
+                fragmentLayout.setId(R.id.content); // some positive integer
+// set the layout as Activity content
+                setContentView(fragmentLayout);
+// Finally , add the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content, fragment).addToBackStack("given")
+                        .commit();
                 break;
 
 
