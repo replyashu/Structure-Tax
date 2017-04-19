@@ -28,6 +28,7 @@ import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.structuretax.R;
 
@@ -70,6 +71,8 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
     TextView txtNet;
 
+    View view;
+
     double basic, hra, da, conveyance, medical, food, telephone, helper, uniform, health, books, lta, special, pf;
 
 
@@ -86,10 +89,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_structured_loss,container, false);
-        initializeLayoutVariables(v);
+        view = inflater.inflate(R.layout.fragment_structured_loss,container, false);
+        initializeLayoutVariables(view);
         ((InputMethodManager) (getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        return v;
+        return view;
     }
 
     private void initializeLayoutVariables(View v){
@@ -387,33 +390,34 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 //        screen= Bitmap.createBitmap(v1.getDrawingCache());
 //        v1.setDrawingCacheEnabled(false);
 
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        final ScrollView root = (ScrollView) inflater.inflate(R.layout.fragment_structured_loss, null); //RelativeLayout is root view of my UI(xml) file.
-        ViewTreeObserver viewTreeObs = root.getViewTreeObserver();
+        final ScrollView root = (ScrollView) view.findViewById(R.id.scrollOuter); //RelativeLayout is root view of my UI(xml) file.
 
-        viewTreeObs.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                root.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                width  = root.getChildAt(0).getMeasuredWidth();
-                height = root.getMeasuredHeight();
-                Log.d("heightwidth", height + " " + width);
+        root.setDrawingCacheEnabled(true);
 
-            }
-        });
+        int height = root.getChildAt(0).getHeight();
+        int width = root.getChildAt(0).getWidth();
 
 
         Bitmap screen= getBitmapFromView(getActivity().getWindow().findViewById(R.id.scrollOuter), height, width); // here give id of our root layout (here its my RelativeLayout's id)
 
+        root.setDrawingCacheEnabled(true);
         try
         {
-            Document document = new Document();
-            File myFile= new File(Environment.getExternalStorageDirectory(), "/Structure");
+
+            Document document = new Document(PageSize.A4);
+            File pdfDir = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOCUMENTS), "Structure Tax");
+            if (!pdfDir.exists()){
+                pdfDir.mkdir();
+            }
+
+            File myFile= new File(pdfDir, "Structure");
 
             PdfWriter.getInstance(document, new FileOutputStream(myFile + ".pdf" ));
             document.open();
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             screen.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
             byte[] byteArray = stream.toByteArray();
             addImage(document,byteArray);
             document.close();
@@ -430,7 +434,7 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
         //Define a bitmap with the same size as the view
         Bitmap returnedBitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
 
-        Log.d("heightwid", view.getWidth() + " " + view.getHeight());
+        Log.d("heightwid", height + " " + width);
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
@@ -473,6 +477,8 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
         // image.scaleAbsolute(150f, 150f);
         try
         {
+            image.scaleAbsolute(PageSize.A4);
+            image.setAbsolutePosition(0, 0);
             document.add(image);
         } catch (DocumentException e) {
             // TODO Auto-generated catch block
