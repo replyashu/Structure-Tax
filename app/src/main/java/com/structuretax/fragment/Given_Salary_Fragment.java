@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
@@ -389,6 +390,8 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 //        v1.setDrawingCacheEnabled(true);
 //        screen= Bitmap.createBitmap(v1.getDrawingCache());
 //        v1.setDrawingCacheEnabled(false);
+
+        Toast.makeText(getActivity(), "Saving file for you", Toast.LENGTH_LONG).show();
 
         final ScrollView root = (ScrollView) view.findViewById(R.id.scrollOuter); //RelativeLayout is root view of my UI(xml) file.
 
