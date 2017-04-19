@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -58,6 +59,9 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
     EditText editBooks;
     EditText editLta;
     EditText editSpecial;
+
+    int width = 0;
+    int height = 0;
 
     private static String FILE;
 
@@ -384,10 +388,22 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 //        v1.setDrawingCacheEnabled(false);
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        ScrollView root = (ScrollView) inflater.inflate(R.layout.fragment_structured_loss, null); //RelativeLayout is root view of my UI(xml) file.
-        root.setDrawingCacheEnabled(true);
-        Bitmap screen= getBitmapFromView(getActivity().getWindow().findViewById(R.id.scrollOuter)); // here give id of our root layout (here its my RelativeLayout's id)
+        final ScrollView root = (ScrollView) inflater.inflate(R.layout.fragment_structured_loss, null); //RelativeLayout is root view of my UI(xml) file.
+        ViewTreeObserver viewTreeObs = root.getViewTreeObserver();
 
+        viewTreeObs.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                root.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                width  = root.getChildAt(0).getMeasuredWidth();
+                height = root.getMeasuredHeight();
+                Log.d("heightwidth", height + " " + width);
+
+            }
+        });
+
+
+        Bitmap screen= getBitmapFromView(getActivity().getWindow().findViewById(R.id.scrollOuter), height, width); // here give id of our root layout (here its my RelativeLayout's id)
 
         try
         {
@@ -410,9 +426,11 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
     }
 
-    public static Bitmap getBitmapFromView(View view) {
+    public static Bitmap getBitmapFromView(View view, int height, int width) {
         //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
+
+        Log.d("heightwid", view.getWidth() + " " + view.getHeight());
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
