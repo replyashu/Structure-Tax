@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    >
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -12,9 +10,10 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
+            android:layout_margin="10dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -42,11 +41,19 @@
                 android:textSize="10sp"
                 android:text="Sample"/>
 
+            <TextView
+                android:id="@+id/txtTaxComputed"
+                android:layout_width="wrap_content"
+                android:text="Sample"
+                android:textSize="10sp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content" />
+
+
             <ImageView
                 android:id="@+id/imgProof"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="gone"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_home_black_24dp"/>
 

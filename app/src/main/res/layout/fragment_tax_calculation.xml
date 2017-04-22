@@ -10,7 +10,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="Salary Breakup \n (Component, Monthly, Yearly)"/>
+        android:text="Tax Breakup \n (Component, Monthly, Yearly, Tax, Proof)"/>
 
 
     <ScrollView
@@ -40,14 +40,14 @@
                     android:padding="10dp"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccent"
-                    android:text="Optimize Salary" />
+                    android:text="Have Savings?" />
 
                 <Button
-                    android:id="@+id/btnTax"
+                    android:id="@+id/btnSaveTax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Compute TAX"/>
+                    android:text="Save More"/>
             </LinearLayout>
 
 

@@ -11,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.structuretax.R;
 import com.structuretax.adapter.SalarySplitAdapter;
+import com.structuretax.adapter.TaxBreakUpAdapter;
 import com.structuretax.global.Controller;
 import com.structuretax.model.Components;
+import com.structuretax.model.TaxComponents;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +30,7 @@ import java.util.List;
 public class Optimized_Salary_Fragment extends Fragment implements View.OnClickListener{
     private RecyclerView recyclerBreakup;
     private Button btnOptimize;
+    private Button btnComputeTax;
     List<Components> components;
     Controller appController;
     Intent intent;
@@ -63,6 +68,8 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
         recyclerBreakup = (RecyclerView) v.findViewById(R.id.recyclerBreakup);
         recyclerBreakup.setLayoutManager(new LinearLayoutManager(getActivity()));
         btnOptimize = (Button) v.findViewById(R.id.btnOptimize);
+        btnComputeTax = (Button) v.findViewById(R.id.btnTax);
+        btnComputeTax.setOnClickListener(this);
         btnOptimize.setOnClickListener(this);
         optimize = 40;
     }
@@ -74,9 +81,43 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
 
         if(id == R.id.btnOptimize){
             optimize = 50;
-            SalarySplitAdapter adapter = new SalarySplitAdapter(appController.salaryBreak(salary, pf, optimize));
+            List<Components> component = appController.salaryBreak(salary, pf, optimize);
+            SalarySplitAdapter adapter = new SalarySplitAdapter(component);
             recyclerBreakup.invalidate();
             recyclerBreakup.setAdapter(adapter);
         }
+
+        else if(id == R.id.btnTax){
+
+            Fragment fragment = new Tax_Computation_Fragment();
+
+            FrameLayout fragmentLayout = new FrameLayout(getActivity());
+// set the layout params to fill the activity
+            fragmentLayout.setLayoutParams(new  ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+// set an id to the layout
+            fragmentLayout.setId(R.id.content); // some positive integer
+// set the layout as Activity content
+            getActivity().setContentView(fragmentLayout);
+// Finally , add the fragment
+            Bundle bundle = new Bundle();
+            bundle.putDouble("salary", salary);
+            bundle.putBoolean("pf", pf);
+            bundle.putInt("optimize", optimize);
+            fragment.setArguments(bundle);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content, fragment).addToBackStack("tax")
+                    .commit();
+
+//            ArrayList<Components> component = appController.salaryBreak(salary, pf, optimize);
+//            List<TaxComponents> taxComponents = appController.taxBreakup(component);
+//
+//            getActivity().getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.content, new Tax_Computation_Fragment()).addToBackStack("Tax")
+//                    .commit();
+//            TaxBreakUpAdapter adapter = new TaxBreakUpAdapter(taxComponents);
+
+
+        }
+
     }
 }

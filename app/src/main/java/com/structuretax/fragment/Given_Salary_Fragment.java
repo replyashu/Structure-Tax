@@ -376,6 +376,7 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
         int id = v.getId();
         switch (id){
             case R.id.btnSave:
+                Toast.makeText(getActivity().getApplicationContext(), "Saving file for you", Toast.LENGTH_LONG).show();
                 saveToPdf(v);
                 break;
 
@@ -385,13 +386,6 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
     }
 
     private void saveToPdf(View v){
-//        Bitmap screen;
-//        View v1 = v.getRootView();
-//        v1.setDrawingCacheEnabled(true);
-//        screen= Bitmap.createBitmap(v1.getDrawingCache());
-//        v1.setDrawingCacheEnabled(false);
-
-        Toast.makeText(getActivity(), "Saving file for you", Toast.LENGTH_LONG).show();
 
         final ScrollView root = (ScrollView) view.findViewById(R.id.scrollOuter); //RelativeLayout is root view of my UI(xml) file.
 

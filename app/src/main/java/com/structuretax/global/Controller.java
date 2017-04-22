@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.structuretax.model.Components;
+import com.structuretax.model.TaxComponents;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class Controller extends Application{
     private static Controller sInstance;
     private ArrayList<Components> components;
+    private ArrayList<TaxComponents> taxComponents;
     private String componentName;
     private String monthly;
     private String yearly;
@@ -30,11 +32,12 @@ public class Controller extends Application{
         sInstance = this;
 
         components = new ArrayList<Components>();
+        taxComponents = new ArrayList<>();
     }
 
 
-    public ArrayList<Components> salaryBreak(double ctc, boolean pf, int optimize){
 
+    public ArrayList<Components> salaryBreak(double ctc, boolean pf, int optimize){
 
         if(pf) {
             computeBreakupWithPf(ctc, optimize);
@@ -45,6 +48,83 @@ public class Controller extends Application{
 
         return components;
     }
+
+    public ArrayList<TaxComponents> taxBreakup(ArrayList<Components> components){
+        taxComponents.clear();
+
+        double tax = 0;
+        // Compute Tax and Return
+        for(int i = 0; i < components.size(); i++){
+            Log.d("taxcompu", components.get(i).getComponentName());
+            double basic = 0;
+            String name = components.get(i).getComponentName();
+            double monthly = components.get(i).getMonthly();
+            double yearly = components.get(i).getYearly();
+            // 13 cases to be calculated and handled
+            if(name.equalsIgnoreCase(Constants.BASIC)){
+                basic = yearly;
+                taxComponents.add(new TaxComponents(name, monthly, yearly, yearly, false));
+            }
+            else if(name.equalsIgnoreCase(Constants.HRA)){
+                double hra = computeHRATax(yearly, basic);
+                if(hra <= 8333){
+                    taxComponents.add(new TaxComponents(name, monthly, yearly, hra, false));
+                    tax += hra;
+                }
+                else {
+                    taxComponents.add(new TaxComponents(name, monthly, yearly, hra, true));
+                    tax += yearly;
+                }
+
+            }
+
+            else if(name.equalsIgnoreCase(Constants.Pf)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, false));
+                tax -= yearly;
+            }
+            else if(name.equalsIgnoreCase(Constants.Conveyance)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, false));
+            }
+            else if(name.equalsIgnoreCase(Constants.Medical)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, false));
+            }
+            else if(name.equalsIgnoreCase(Constants.Food)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, false));
+            }
+            else if(name.contains(Constants.Mobile_And_Telephone)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, true));
+            }
+            else if(name.contains(Constants.Lta)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, true));
+            }
+            else if(name.contains(Constants.Helper)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, false));
+            }
+            else if(name.contains(Constants.Books)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, true));
+            }
+            else if(name.contains(Constants.Uniform)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, true));
+            }
+            else if(name.contains(Constants.Health)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, 0, true));
+            }
+            else if(name.contains(Constants.Special)){
+                taxComponents.add(new TaxComponents(name, monthly, yearly, yearly, false));
+                tax += yearly;
+            }
+            else if(name.contains(Constants.Net)){
+
+                tax = computeTaxableSalary(yearly, tax);
+                taxComponents.add(new TaxComponents("Tax", monthly, yearly, tax, false));
+
+
+            }
+        }
+
+        return  taxComponents;
+    }
+
 
     private ArrayList<Components> computeBreakupWithPf(double ctc, int optimize){
         components.clear();
@@ -393,8 +473,43 @@ public class Controller extends Application{
     }
 
     private double computeComponent(long percent, double amount){
-
-        Log.d("salaryiss", amount + " " + percent * amount);
         return (percent * amount)/(12 * 100);
     }
+
+    private double computeHRATax(double amount, double basic){
+        double hra = amount;
+        double metro = computeComponent(40, basic);
+
+        return returnMinHRA(hra, metro);
+    }
+
+    private double returnMinHRA(double amount1, double amount2){
+        if(amount1 <= amount2)
+            return  amount1;
+        else
+            return amount2;
+    }
+
+    private double computeTaxableSalary(double salary, double tax){
+        double cut = salary - tax;
+        if(cut <= 250000){
+            tax = 0;
+        }
+        else if(cut <= 500000){
+            double ded = 500000 - cut;
+            double payableTax = 0.05 * ded + 2400;
+            payableTax += computeComponent(3, payableTax);
+            tax += payableTax;
+        }
+        else if(cut <= 1000000 && cut > 500000){
+            double ded = 1000000 - cut;
+            double payableTax = 0.05 * ded + 2400;
+            payableTax += computeComponent(3, payableTax);
+            tax += payableTax;
+        }
+
+        return tax;
+    }
+
+
 }
