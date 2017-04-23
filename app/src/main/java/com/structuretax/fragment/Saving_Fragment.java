@@ -29,6 +29,7 @@ public class Saving_Fragment extends Fragment {
     private EditText editHomeLoan;
     private EditText edit80c;
     private EditText edit80d;
+    private EditText edit80ccd;
 
     List<Components> components;
     Controller appController;
@@ -64,6 +65,11 @@ public class Saving_Fragment extends Fragment {
     }
 
     private void initializeLayoutVariables(View v){
-
+//        btnShowTax;
+//        btnComputeTax;
+//        editHomeLoan;
+//        edit80c;
+//        edit80d;
+//        edit80ccd;
     }
 }
