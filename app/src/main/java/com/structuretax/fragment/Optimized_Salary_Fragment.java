@@ -31,9 +31,8 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
     private RecyclerView recyclerBreakup;
     private Button btnOptimize;
     private Button btnComputeTax;
-    List<Components> components;
+    double tax, tax1;
     Controller appController;
-    Intent intent;
     double salary;
     boolean pf;
     private int optimize;
@@ -60,7 +59,30 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_optimized, container, false);
         initializeLayoutVariables(view);
 
-        recyclerBreakup.setAdapter(new SalarySplitAdapter(appController.salaryBreak(salary, pf, optimize)));
+        ArrayList<Components> tmp = new ArrayList<>();
+
+        ArrayList<Components> component = appController.salaryBreak(salary, pf, 40);
+        List<TaxComponents> taxComponent = appController.taxBreakup(component);
+        tax = taxComponent.get(taxComponent.size() - 1).getTax();
+
+        ArrayList<Components> components = appController.salaryBreak(salary, pf, 50);
+        List<TaxComponents> taxComponents = appController.taxBreakup(components);
+        tax1 = taxComponents.get(taxComponents.size() - 1).getTax();
+
+
+        SalarySplitAdapter adapter;
+
+        if(tax > tax1){
+            components = appController.salaryBreak(salary, pf, 50);
+            adapter = new SalarySplitAdapter(components);
+        }
+        else {
+            component = appController.salaryBreak(salary, pf, 40);
+            adapter = new SalarySplitAdapter(component);
+        }
+
+        recyclerBreakup.invalidate();
+        recyclerBreakup.setAdapter(adapter);
         return view;
     }
 

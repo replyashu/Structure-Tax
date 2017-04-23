@@ -114,11 +114,9 @@ public class Controller extends Application{
                 tax += yearly;
             }
             else if(name.contains(Constants.Net)){
-
                 tax = computeTaxableSalary(yearly, tax);
                 taxComponents.add(new TaxComponents("Tax", monthly, yearly, tax, false));
-
-
+                taxComponents.add(new TaxComponents("Take Home", monthly - tax/12, yearly - tax, tax, false));
             }
         }
 
@@ -492,18 +490,38 @@ public class Controller extends Application{
 
     private double computeTaxableSalary(double salary, double tax){
         double cut = salary - tax;
-        if(cut <= 250000){
-            tax = 0;
-        }
-        else if(cut <= 500000){
+        tax = 0;
+        if(cut <= 500000 && cut > 250000){
+            cut -= 250000;
             double ded = 500000 - cut;
             double payableTax = 0.05 * ded + 2400;
             payableTax += computeComponent(3, payableTax);
             tax += payableTax;
         }
         else if(cut <= 1000000 && cut > 500000){
+            cut -= 500000;
             double ded = 1000000 - cut;
-            double payableTax = 0.05 * ded + 2400;
+            double payableTax =12500 + 0.2 * ded + 2400;
+            payableTax += computeComponent(3, payableTax);
+            tax += payableTax;
+        }
+        else if(cut <= 5000000 && cut > 1000000){
+            cut -= 1000000;
+            double payableTax = 112500 + 0.3 * cut + 2400;
+            payableTax += computeComponent(3, payableTax);
+            tax += payableTax;
+        }
+        else if(cut > 5000000 && cut <= 10000000){
+            cut -= 1000000;
+            double payableTax = 112500 + 0.3 * cut + 2400;
+            payableTax += computeComponent(10, payableTax);
+            payableTax += computeComponent(3, payableTax);
+            tax += payableTax;
+        }
+        else if(cut > 10000000) {
+            cut -= 1000000;
+            double payableTax = 112500 + 0.3 * cut + 2400;
+            payableTax += computeComponent(15, payableTax);
             payableTax += computeComponent(3, payableTax);
             tax += payableTax;
         }

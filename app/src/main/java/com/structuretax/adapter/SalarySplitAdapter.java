@@ -45,12 +45,6 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
         holder.txtMonthly.setText("₹ " + String.format("%.2f", components.get(position).getMonthly()));
         holder.txtYearly.setText("₹ " + String.format("%.2f",components.get(position).getYearly()));
         boolean isProvable = components.get(position).isProof();
-        if(isProvable) {
-            holder.imgProof.setVisibility(View.VISIBLE);
-            holder.imgProof.setImageResource(R.drawable.proof);
-        }
-        else
-            holder.imgProof.setVisibility(View.GONE);
 
     }
 
@@ -64,7 +58,6 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
         TextView txtComponentName;
         TextView txtMonthly;
         TextView txtYearly;
-        ImageView imgProof;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -72,7 +65,6 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
             txtComponentName = (TextView) itemView.findViewById(R.id.txtComponent);
             txtMonthly = (TextView) itemView.findViewById(R.id.txtMonthly);
             txtYearly = (TextView) itemView.findViewById(R.id.txtYearly);
-            imgProof = (ImageView) itemView.findViewById(R.id.imgProof);
         }
 
     }

@@ -12,7 +12,8 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:weightSum="1"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,6 +22,7 @@
                 android:id="@+id/txtComponent"
                 android:layout_width="80dp"
                 android:textSize="12sp"
+                android:layout_weight="0.13"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="Sample"/>
@@ -30,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_weight="0.43"
                 android:textSize="10sp"
                 android:text="Sample"/>
 
@@ -38,17 +40,10 @@
                 android:id="@+id/txtYearly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_weight="0.43"
                 android:textSize="10sp"
                 android:text="Sample"/>
 
-            <ImageView
-                android:id="@+id/imgProof"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="gone"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_home_black_24dp"/>
 
 
         </LinearLayout>

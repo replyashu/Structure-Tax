@@ -93,7 +93,12 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
 
         switch (position){
             case 0:
-                Snackbar.make(view, "Select No Of Employees", Snackbar.LENGTH_LONG).show();
+                try {
+                    Snackbar.make(view, "Select No Of Employees", Snackbar.LENGTH_LONG).show();
+                }
+                catch (NullPointerException e){
+
+                }
                 break;
 
             case 1:

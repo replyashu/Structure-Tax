@@ -36,6 +36,7 @@ public class Tax_Computation_Fragment extends Fragment implements View.OnClickLi
     double salary;
     boolean pf;
     private int optimize;
+    private double tax1, tax2;
 
 
     public Tax_Computation_Fragment(){
@@ -61,10 +62,27 @@ public class Tax_Computation_Fragment extends Fragment implements View.OnClickLi
         initializeLayoutVariables(view);
 
 
-        ArrayList<Components> component = appController.salaryBreak(salary, pf, optimize);
-        List<TaxComponents> taxComponents = appController.taxBreakup(component);
+        ArrayList<Components> component = appController.salaryBreak(salary, pf, 40);
+        List<TaxComponents> taxComponent = appController.taxBreakup(component);
+        tax1 = taxComponent.get(taxComponent.size() - 1).getTax();
 
-            TaxBreakUpAdapter adapter = new TaxBreakUpAdapter(taxComponents);
+        ArrayList<Components> components = appController.salaryBreak(salary, pf, 50);
+        List<TaxComponents> taxComponents = appController.taxBreakup(components);
+        tax2 = taxComponents.get(taxComponents.size() - 1).getTax();
+
+        TaxBreakUpAdapter adapter;
+
+        if(tax1 > tax2){
+            components = appController.salaryBreak(salary, pf, 50);
+            taxComponents = appController.taxBreakup(components);
+            adapter = new TaxBreakUpAdapter(taxComponents);
+        }
+        else {
+            component = appController.salaryBreak(salary, pf, 40);
+            taxComponent = appController.taxBreakup(component);
+            adapter = new TaxBreakUpAdapter(taxComponent);
+        }
+
         recyclerBreakup.setAdapter(adapter);
         return view;
 
