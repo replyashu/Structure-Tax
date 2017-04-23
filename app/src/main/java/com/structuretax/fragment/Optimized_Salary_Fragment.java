@@ -102,11 +102,11 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
         int id = v.getId();
 
         if(id == R.id.btnOptimize){
-            optimize = 50;
-            List<Components> component = appController.salaryBreak(salary, pf, optimize);
-            SalarySplitAdapter adapter = new SalarySplitAdapter(component);
-            recyclerBreakup.invalidate();
-            recyclerBreakup.setAdapter(adapter);
+//            optimize = 50;
+//            List<Components> component = appController.salaryBreak(salary, pf, optimize);
+//            SalarySplitAdapter adapter = new SalarySplitAdapter(component);
+//            recyclerBreakup.invalidate();
+//            recyclerBreakup.setAdapter(adapter);
         }
 
         else if(id == R.id.btnTax){

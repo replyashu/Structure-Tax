@@ -40,7 +40,7 @@
                     android:padding="10dp"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccent"
-                    android:text="Optimize Salary" />
+                    android:text="Savings" />
 
                 <Button
                     android:id="@+id/btnTax"

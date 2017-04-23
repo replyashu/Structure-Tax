@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        if(fm.getBackStackEntryCount() > 0) {
+        if(fm.getBackStackEntryCount() == 1) {
             fm.popBackStack();
             startActivity(new Intent(this, MainActivity.class));
             finish();
