@@ -65,11 +65,9 @@ public class Saving_Fragment extends Fragment {
     }
 
     private void initializeLayoutVariables(View v){
-//        btnShowTax;
-//        btnComputeTax;
-//        editHomeLoan;
-//        edit80c;
-//        edit80d;
-//        edit80ccd;
+        editHomeLoan = (EditText) v.findViewById(R.id.editLoan);
+        edit80c = (EditText) v.findViewById(R.id.edit80c);
+        edit80d = (EditText) v.findViewById(R.id.edit80d);
+        edit80ccd = (EditText) v.findViewById(R.id.editNPS);
     }
 }

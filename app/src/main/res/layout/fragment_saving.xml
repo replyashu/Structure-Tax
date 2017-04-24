@@ -44,7 +44,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editMedical"
+            android:id="@+id/edit80d"
             android:layout_weight="0.8"
             android:hint="Max is INR 15,000"
             android:textSize="12sp"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/ediNPS"
+            android:id="@+id/editNPS"
             android:layout_weight="0.8"
             android:hint="Maximum is INR 50,000"
             android:textSize="12sp"
@@ -96,6 +96,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnTakeHome"
         android:text="Show Take Home"
         android:layout_margin="30dp"
         android:background="@android:color/darker_gray"
