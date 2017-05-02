@@ -115,7 +115,12 @@ public class Controller extends Application{
             }
             else if(name.contains(Constants.Net)){
                 tax = computeTaxableSalary(yearly, tax);
-                taxComponents.add(new TaxComponents("Tax", monthly, yearly, tax, false));
+
+                if(tax == 0){
+                    taxComponents.add(new TaxComponents("Tax", 0, 0, tax, false));
+                }
+                else
+                    taxComponents.add(new TaxComponents("Tax", monthly, yearly, tax, false));
                 taxComponents.add(new TaxComponents("Take Home", monthly - tax/12, yearly - tax, tax, false));
             }
         }
@@ -488,7 +493,7 @@ public class Controller extends Application{
             return amount2;
     }
 
-    private double computeTaxableSalary(double salary, double tax){
+    public double computeTaxableSalary(double salary, double tax){
         double cut = salary - tax;
         tax = 0;
         if(cut <= 500000 && cut > 250000){
