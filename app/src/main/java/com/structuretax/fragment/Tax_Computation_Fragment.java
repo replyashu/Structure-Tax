@@ -56,7 +56,7 @@ public class Tax_Computation_Fragment extends Fragment implements View.OnClickLi
     double provident;
     boolean pf;
     private int optimize;
-    private double tax1, tax2;
+    private double tax1, tax2, saving;
     private View view;
 
 
@@ -96,11 +96,13 @@ public class Tax_Computation_Fragment extends Fragment implements View.OnClickLi
         if(tax1 > tax2){
             components = appController.salaryBreak(salary, pf, 50);
             taxComponents = appController.taxBreakup(components);
+            saving = taxComponent.get(taxComponents.size() - 2).getMonthly();
             adapter = new TaxBreakUpAdapter(taxComponents);
         }
         else {
             component = appController.salaryBreak(salary, pf, 40);
             taxComponent = appController.taxBreakup(component);
+            saving = taxComponent.get(taxComponents.size() - 2).getMonthly();
             adapter = new TaxBreakUpAdapter(taxComponent);
         }
 
@@ -139,8 +141,7 @@ public class Tax_Computation_Fragment extends Fragment implements View.OnClickLi
 // Finally , add the fragment
                 Bundle bundle = new Bundle();
                 bundle.putDouble("salary", salary);
-                tax1 = (tax1 - 2400)/1.03;
-                bundle.putDouble("tax", tax1);
+                bundle.putDouble("tax", saving);
                 fragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content, fragment).addToBackStack("saving")

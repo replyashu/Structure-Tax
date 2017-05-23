@@ -56,7 +56,7 @@ public class TaxBreakUpAdapter extends RecyclerView.Adapter<TaxBreakUpAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return components.size();
+        return components.size() - 2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

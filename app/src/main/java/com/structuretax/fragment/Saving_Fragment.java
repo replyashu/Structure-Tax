@@ -143,10 +143,14 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
                     home = 200000;
             }
 
-            saving += basic + med + nps + home;
-            salary = salary - saving;
-            saving = appController.computeTaxableSalary(salary - tax, 0);
-            txtTakeHome.setText("Your Monthly Take Home(Optimized) is : \n\nRs. " + Math.floor((saving  * 100)/100) / 12 );
+
+            saving = tax + basic + med + nps + home;
+            Log.d("salarysavbe", salary + " " + saving + "");
+
+            saving = appController.computeTaxableSalary(salary, saving);
+
+
+            txtTakeHome.setText("Your Monthly Take Home(Optimized) is : \n\nRs. " + (salary - saving) / 12 );
         }
     }
 }

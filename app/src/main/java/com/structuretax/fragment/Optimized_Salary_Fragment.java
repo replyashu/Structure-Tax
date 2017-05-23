@@ -63,11 +63,11 @@ public class Optimized_Salary_Fragment extends Fragment implements View.OnClickL
 
         ArrayList<Components> component = appController.salaryBreak(salary, pf, 40);
         List<TaxComponents> taxComponent = appController.taxBreakup(component);
-        tax = taxComponent.get(taxComponent.size() - 1).getTax();
+        tax = taxComponent.get(taxComponent.size() - 2).getTax();
 
         ArrayList<Components> components = appController.salaryBreak(salary, pf, 50);
         List<TaxComponents> taxComponents = appController.taxBreakup(components);
-        tax1 = taxComponents.get(taxComponents.size() - 1).getTax();
+        tax1 = taxComponents.get(taxComponents.size() - 2).getTax();
 
 
         SalarySplitAdapter adapter;

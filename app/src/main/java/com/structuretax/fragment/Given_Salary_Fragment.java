@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -61,6 +62,9 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
     EditText editBooks;
     EditText editLta;
     EditText editSpecial;
+
+    private boolean isPfEligible = false;
+    private double ctcSalary;
 
     int width = 0;
     int height = 0;
@@ -134,7 +138,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                basic = Double.parseDouble(editBasic.getText().toString());
+                if(editBasic.getText().toString().isEmpty())
+                    basic = 0;
+                else
+                    basic = Double.parseDouble(editBasic.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -151,7 +158,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                hra = Double.parseDouble(editHRA.getText().toString());
+                if(editHRA.getText().toString().isEmpty())
+                    hra = 0;
+                else
+                    hra = Double.parseDouble(editHRA.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -168,7 +178,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                conveyance = Double.parseDouble(editConveyance.getText().toString());
+                if(editConveyance.getText().toString().isEmpty())
+                    conveyance = 0;
+                else
+                    conveyance = Double.parseDouble(editConveyance.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -185,7 +198,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                pf = Double.parseDouble(editPf.getText().toString());
+                if(editPf.getText().toString().isEmpty())
+                    pf = 0;
+                else
+                    pf = Double.parseDouble(editPf.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -202,7 +218,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                da = Double.parseDouble(editDA.getText().toString());
+                if(editDA.getText().toString().isEmpty())
+                    da = 0;
+                else
+                    da = Double.parseDouble(editDA.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -219,7 +238,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                medical = Double.parseDouble(editMedical.getText().toString());
+                if(editMedical.getText().toString().isEmpty())
+                    medical = 0;
+                else
+                    medical = Double.parseDouble(editMedical.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -236,7 +258,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                food = Double.parseDouble(editFood.getText().toString());
+                if(editFood.getText().toString().isEmpty())
+                    food = 0;
+                else
+                    food = Double.parseDouble(editFood.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -253,7 +278,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                telephone = Double.parseDouble(editTelephone.getText().toString());
+                if(editTelephone.getText().toString().isEmpty())
+                    telephone = 0;
+                else
+                    telephone = Double.parseDouble(editTelephone.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -270,7 +298,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                health = Double.parseDouble(editHelper.getText().toString());
+                if(editHealth.getText().toString().isEmpty())
+                    health = 0;
+                else
+                    health = Double.parseDouble(editHelper.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -287,7 +318,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                uniform = Double.parseDouble(editUniform.getText().toString());
+                if(editUniform.getText().toString().isEmpty())
+                    uniform = 0;
+                else
+                    uniform = Double.parseDouble(editUniform.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -304,7 +338,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                health = Double.parseDouble(editHealth.getText().toString());
+                if(editHealth.getText().toString().isEmpty())
+                    health = 0;
+                else
+                    health = Double.parseDouble(editHealth.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -321,7 +358,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                books = Double.parseDouble(editBooks.getText().toString());
+                if(editBooks.getText().toString().isEmpty())
+                    books = 0;
+                else
+                    books = Double.parseDouble(editBooks.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -338,7 +378,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                lta = Double.parseDouble(editLta.getText().toString());
+                if(editLta.getText().toString().isEmpty())
+                    lta = 0;
+                else
+                    lta = Double.parseDouble(editLta.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -355,7 +398,10 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                special = Double.parseDouble(editSpecial.getText().toString());
+                if(editSpecial.getText().toString().isEmpty())
+                    special = 0;
+                else
+                    special = Double.parseDouble(editSpecial.getText().toString());
                 computeAndAssignNet();
             }
         });
@@ -381,6 +427,14 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
                 break;
 
             case R.id.btnDifference:
+                try {
+                    ctcSalary = Double.parseDouble(txtNet.getText().toString());
+                }catch (NumberFormatException e){
+//                    Toast.makeText(getActivity(),"Enter Your CTC", Toast.LENGTH_LONG).show();
+                }
+
+                computeSalary(ctcSalary, isPfEligible);
+                Log.d("salary", ctcSalary + " " + isPfEligible);
                 break;
         }
     }
@@ -424,6 +478,28 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
         {
             e.printStackTrace();
         }
+
+    }
+
+    private void computeSalary(double salary, boolean pf){
+//        appController.salaryBreak(salary, pf);
+        Fragment fragment = new Optimized_Salary_Fragment();
+
+        FrameLayout fragmentLayout = new FrameLayout(getActivity());
+// set the layout params to fill the activity
+        fragmentLayout.setLayoutParams(new  ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+// set an id to the layout
+        fragmentLayout.setId(R.id.content); // some positive integer
+// set the layout as Activity content
+        getActivity().setContentView(fragmentLayout);
+// Finally , add the fragment
+        Bundle bundle = new Bundle();
+        bundle.putDouble("salary", salary);
+        bundle.putBoolean("pf", pf);
+        fragment.setArguments(bundle);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content, fragment).addToBackStack("Given")
+                .commit();
 
     }
 
