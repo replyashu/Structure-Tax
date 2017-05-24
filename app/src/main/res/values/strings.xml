@@ -5,6 +5,7 @@
     <string name="title_notifications">Global</string>
     <string name="title_about">About</string>
     <string name="enter_ctc">Enter Your CTC(Excluding Bonus)</string>
+    <string name="enter_take_home">Enter Your Take Home (Optional)</string>
 
     <string-array name="employees">
         <item>Employee Count</item>

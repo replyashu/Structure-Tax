@@ -21,13 +21,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_margin="30dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No Of Employees"/>
+                    android:text="No Of Employees" />
+
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/spinEmployeeCount"
                     android:layout_width="wrap_content"
@@ -47,16 +49,17 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:visibility="gone"
-                android:text="@string/title_home" />
+                android:gravity="center"
+                android:text="@string/title_home"
+                android:visibility="gone" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="@string/enter_ctc"/>
+                android:text="@string/enter_ctc" />
 
             <EditText
                 android:id="@+id/editSalaryCtc"
@@ -64,9 +67,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:inputType="number"
                 android:gravity="center"
-                android:hint="0"/>
+                android:hint="0"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="@string/enter_take_home" />
+
+            <EditText
+                android:id="@+id/editInHand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,14 +100,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Already Given"/>
+                    android:text="Already Given" />
 
                 <Button
                     android:id="@+id/btnStructure"
                     android:layout_width="wrap_content"
-                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:text="STRUCTURE IT"/>
+                    android:layout_weight="0.5"
+                    android:text="STRUCTURE IT" />
 
             </LinearLayout>
 

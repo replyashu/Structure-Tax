@@ -1,6 +1,7 @@
 package com.structuretax.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.structuretax.R;
 import com.structuretax.global.Controller;
 import com.structuretax.model.Components;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -34,6 +36,8 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
     private EditText edit80d;
     private EditText edit80ccd;
     private TextView txtTakeHome;
+
+    private String takeHomeSalary;
 
     Controller appController;
     double salary;
@@ -149,8 +153,19 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
 
             saving = appController.computeTaxableSalary(salary, saving);
 
+            SharedPreferences sp = getActivity().getSharedPreferences("TAKE_HOME", 0);
+            long take_home = sp.getLong(takeHomeSalary, 0);
+            double diff = (salary - saving)/12;
+            double kat = diff - (double) (take_home/12);
 
-            txtTakeHome.setText("Your Monthly Take Home(Optimized) is : \n\nRs. " + (salary - saving) / 12 );
+
+            txtTakeHome.setText("Your Monthly Take Home(Optimized) is : \nRs. " +
+                    new DecimalFormat("##.##").format(diff) + "\n\n" +
+                    "Difference : " + "Rs. " + new DecimalFormat("##.##").format(kat));
+
+            // TODO add firebase db reference for global saving
+
+
         }
     }
 }

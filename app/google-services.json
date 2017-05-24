@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "790898408066",
+    "firebase_url": "https://tax-saver-a6150.firebaseio.com",
+    "project_id": "tax-saver-a6150",
+    "storage_bucket": "tax-saver-a6150.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790898408066:android:401c5212d1627a37",
+        "android_client_info": {
+          "package_name": "com.structuretax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "790898408066-58c9vpnk38lqoi8fqsonn2n3perbjeoj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.structuretax",
+            "certificate_hash": "8164d6de65aba06e1737e250b146ab1d69fcb480"
+          }
+        },
+        {
+          "client_id": "790898408066-e7kq7uff6m90cal50if4memioni59aek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDevbywYhaBdrBap6She9eIVQW3RwUYp2M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "790898408066-e7kq7uff6m90cal50if4memioni59aek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

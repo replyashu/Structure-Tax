@@ -1,6 +1,7 @@
 package com.structuretax.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.structuretax.R;
+import com.structuretax.fragment.Dashboard_Fragment;
 import com.structuretax.fragment.Given_Salary_Fragment;
 import com.structuretax.fragment.Optimized_Salary_Fragment;
 import com.structuretax.global.Controller;
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
     private EditText editCtcSalary;
     private Button btnStructure;
     private Button btnSalaryGiven;
+    private EditText editTakeHomeSalary;
+    private SharedPreferences sp;
+    private String takeHomeSalary;
     private Controller appController;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -44,9 +49,12 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finishAffinity();
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
+                    showDashboard();
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
@@ -80,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
         editCtcSalary = (EditText) findViewById(R.id.editSalaryCtc);
         btnStructure = (Button) findViewById(R.id.btnStructure);
         btnSalaryGiven = (Button) findViewById(R.id.btnGiven);
+        editTakeHomeSalary = (EditText) findViewById(R.id.editInHand);
 
         spinEmployeeCount.setOnItemSelectedListener(this);
         btnStructure.setOnClickListener(this);
@@ -122,12 +131,20 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
             case R.id.btnStructure:
                 try {
                     ctcSalary = Double.parseDouble(editCtcSalary.getText().toString());
+                    String t = editTakeHomeSalary.getText().toString();
+                    double tmp = 0;
+                    if(!t.isEmpty()){
+                        tmp = Double.parseDouble(t);
+                    }
+
+                    sp = getSharedPreferences("TAKE_HOME", 0);
+                    sp.edit().putLong(takeHomeSalary, (long)tmp).apply();
+
                 }catch (NumberFormatException e){
                     Toast.makeText(this,"Enter Your CTC", Toast.LENGTH_LONG).show();
                 }
 
                 computeSalary(ctcSalary, isPfEligible);
-                Log.d("salary", ctcSalary + " " + isPfEligible);
                 break;
 
             case R.id.btnGiven:
@@ -148,6 +165,24 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
 
 
         }
+    }
+
+    private void showDashboard(){
+        Fragment fragment = new Dashboard_Fragment();
+//
+//        FrameLayout fragmentLayout = new FrameLayout(this);
+//// set the layout params to fill the activity
+//        fragmentLayout.setLayoutParams(new  ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//// set an id to the layout
+//        fragmentLayout.setId(R.id.content); // some positive integer
+//// set the layout as Activity content
+//        setContentView(fragmentLayout);
+//// Finally , add the fragment
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0).findViewById(R.id.content);
+        getSupportFragmentManager().beginTransaction()
+                .add(viewGroup.getId(), fragment).addToBackStack("dashboard")
+                .commit();
     }
 
     private void computeSalary(double salary, boolean pf){
