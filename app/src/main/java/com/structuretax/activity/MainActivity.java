@@ -22,7 +22,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.structuretax.R;
+import com.structuretax.fragment.About_Us_Fragment;
 import com.structuretax.fragment.Dashboard_Fragment;
 import com.structuretax.fragment.Given_Salary_Fragment;
 import com.structuretax.fragment.Optimized_Salary_Fragment;
@@ -57,10 +59,11 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
                     showDashboard();
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+//                case R.id.navigation_notifications:
+//                    mTextMessage.setText(R.string.title_notifications);
+//                    return true;
                 case R.id.navigation_about:
+                    showAboutUs();
                     mTextMessage.setText(R.string.title_about);
                     return true;
             }
@@ -73,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -182,6 +188,24 @@ public class MainActivity extends AppCompatActivity implements AppCompatSpinner.
                 .findViewById(android.R.id.content)).getChildAt(0).findViewById(R.id.content);
         getSupportFragmentManager().beginTransaction()
                 .add(viewGroup.getId(), fragment).addToBackStack("dashboard")
+                .commit();
+    }
+
+    private void showAboutUs(){
+        Fragment fragment = new About_Us_Fragment();
+//
+//        FrameLayout fragmentLayout = new FrameLayout(this);
+//// set the layout params to fill the activity
+//        fragmentLayout.setLayoutParams(new  ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//// set an id to the layout
+//        fragmentLayout.setId(R.id.content); // some positive integer
+//// set the layout as Activity content
+//        setContentView(fragmentLayout);
+//// Finally , add the fragment
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0).findViewById(R.id.content);
+        getSupportFragmentManager().beginTransaction()
+                .add(viewGroup.getId(), fragment).addToBackStack("about")
                 .commit();
     }
 

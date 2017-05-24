@@ -3,6 +3,7 @@ package com.structuretax.fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.structuretax.R;
 import com.structuretax.global.Controller;
 import com.structuretax.model.Components;
@@ -46,6 +49,9 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
     private  String bas, me, np, ho;
     double saving = 0;
     private View view;
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     public Saving_Fragment(){
 
@@ -171,6 +177,13 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
     }
 
     private void sendToFirebase(double amount){
+        database = FirebaseDatabase.getInstance();
 
+        String android_id = Settings.Secure.getString(getContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        myRef = database.getReference("savings/");
+
+        myRef.child(android_id).setValue(amount);
     }
 }

@@ -19,4 +19,9 @@
         <item>Greater than 10000</item>
 
     </string-array>
+
+    <string name="about_us">More Apps from the developer \n\n
+        https://play.google.com/store/apps/details?id=com.shopearn\n\n
+        https://play.google.com/store/apps/details?id=filter.ashu.smsfilter \n
+    </string>
 </resources>

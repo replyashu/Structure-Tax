@@ -423,6 +423,7 @@ public class Given_Salary_Fragment extends Fragment implements View.OnClickListe
         switch (id){
             case R.id.btnSave:
                 Toast.makeText(getActivity().getApplicationContext(), "Saving file for you", Toast.LENGTH_LONG).show();
+
                 saveToPdf(v);
                 break;
 
