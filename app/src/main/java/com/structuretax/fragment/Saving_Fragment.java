@@ -157,6 +157,7 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
             long take_home = sp.getLong(takeHomeSalary, 0);
             double diff = (salary - saving)/12;
             double kat = diff - (double) (take_home/12);
+            sendToFirebase(kat);
 
 
             txtTakeHome.setText("Your Monthly Take Home(Optimized) is : \nRs. " +
@@ -167,5 +168,9 @@ public class Saving_Fragment extends Fragment implements View.OnClickListener{
 
 
         }
+    }
+
+    private void sendToFirebase(double amount){
+
     }
 }
