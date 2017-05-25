@@ -32,7 +32,7 @@ public class Dashboard_Fragment extends Fragment{
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    private double t;
+    private long t;
 
     @Nullable
     @Override
@@ -82,7 +82,7 @@ public class Dashboard_Fragment extends Fragment{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
 
-                    t += (Double) childDataSnapshot.getValue();
+                    t += (Long) childDataSnapshot.getValue();
 
                     Log.d("pointaaa", childDataSnapshot.getValue() + " " + t);
 
@@ -149,7 +149,7 @@ public class Dashboard_Fragment extends Fragment{
         animator.setDuration(3000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                txtView.setText("Saved so far in Rs(Tentative) \n Rs. " + (int) animation.getAnimatedValue());
+                txtView.setText("Monthly saved so far in Rs(Tentative) \n Rs. " + (int) animation.getAnimatedValue());
             }
         });
         animator.start();
