@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
 
     private List<Components> components;
     private Context context;
+    private int lastPosition = -1;
+
 
     public SalarySplitAdapter(List<Components> components){
         this.components = components;
@@ -46,6 +50,19 @@ public class SalarySplitAdapter extends RecyclerView.Adapter<SalarySplitAdapter.
         holder.txtYearly.setText("₹ " + String.format("%.2f",components.get(position).getYearly()));
         boolean isProvable = components.get(position).isProof();
 
+        setAnimation(holder.itemView, position);
+
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anticipateovershoot_interpolator);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override

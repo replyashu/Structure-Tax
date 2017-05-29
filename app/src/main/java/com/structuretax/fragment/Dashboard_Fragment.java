@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.structuretax.R;
 
+import java.math.BigDecimal;
+
 /**
  * Created by apple on 08/04/17.
  */
@@ -32,7 +34,7 @@ public class Dashboard_Fragment extends Fragment{
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    private long t;
+    private double t;
 
     @Nullable
     @Override
@@ -82,9 +84,8 @@ public class Dashboard_Fragment extends Fragment{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
 
-                    t += (Long) childDataSnapshot.getValue();
+                    t += (Double)childDataSnapshot.getValue();
 
-                    Log.d("pointaaa", childDataSnapshot.getValue() + " " + t);
 
 ////                    GlobalPoints points = childDataSnapshot.getValue();
 ////                    pointses.add(points);
