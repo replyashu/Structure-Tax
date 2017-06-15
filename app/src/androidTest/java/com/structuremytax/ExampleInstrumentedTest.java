@@ -1,4 +1,4 @@
-package com.structuretax;
+package com.structuremytax;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

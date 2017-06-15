@@ -1,6 +1,5 @@
-package com.structuretax.fragment;
+package com.structuremytax.fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -19,12 +18,10 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.structuretax.R;
-import com.structuretax.global.Controller;
-import com.structuretax.model.Components;
+import com.structuremytax.R;
+import com.structuremytax.global.Controller;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 /**
  * Created by apple on 23/04/17.

@@ -1,4 +1,4 @@
-package com.structuretax.fragment;
+package com.structuremytax.fragment;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -20,7 +20,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +34,11 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.structuretax.R;
-import com.structuretax.adapter.SalarySplitAdapter;
-import com.structuretax.adapter.TaxBreakUpAdapter;
-import com.structuretax.global.Controller;
-import com.structuretax.model.Components;
-import com.structuretax.model.TaxComponents;
+import com.structuremytax.R;
+import com.structuremytax.adapter.TaxBreakUpAdapter;
+import com.structuremytax.global.Controller;
+import com.structuremytax.model.Components;
+import com.structuremytax.model.TaxComponents;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.structuretax.fragment;
+package com.structuremytax.fragment;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -25,13 +25,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +39,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.structuretax.R;
+import com.structuremytax.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -56,7 +53,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * Created by apple on 15/04/17.

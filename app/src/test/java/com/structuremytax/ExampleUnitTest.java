@@ -1,4 +1,4 @@
-package com.structuretax;
+package com.structuremytax;
 
 import org.junit.Test;
 

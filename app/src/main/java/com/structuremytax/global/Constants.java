@@ -1,4 +1,4 @@
-package com.structuretax.global;
+package com.structuremytax.global;
 
 /**
  * Created by apple on 08/04/17.

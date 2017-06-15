@@ -1,4 +1,4 @@
-package com.structuretax.model;
+package com.structuremytax.model;
 
 /**
  * Created by apple on 23/04/17.

@@ -1,16 +1,14 @@
-package com.structuretax.global;
+package com.structuremytax.global;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
-import com.structuretax.model.Components;
-import com.structuretax.model.TaxComponents;
+import com.structuremytax.model.Components;
+import com.structuremytax.model.TaxComponents;
 
 import io.fabric.sdk.android.Fabric;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by apple on 08/04/17.

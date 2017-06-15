@@ -1,4 +1,4 @@
-package com.structuretax.activity;
+package com.structuremytax.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +21,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.FirebaseDatabase;
-import com.structuretax.R;
-import com.structuretax.fragment.About_Us_Fragment;
-import com.structuretax.fragment.Dashboard_Fragment;
-import com.structuretax.fragment.Given_Salary_Fragment;
-import com.structuretax.fragment.Optimized_Salary_Fragment;
-import com.structuretax.global.Controller;
+import com.structuremytax.R;
+import com.structuremytax.fragment.About_Us_Fragment;
+import com.structuremytax.fragment.Dashboard_Fragment;
+import com.structuremytax.fragment.Given_Salary_Fragment;
+import com.structuremytax.fragment.Optimized_Salary_Fragment;
+import com.structuremytax.global.Controller;
 
 public class MainActivity extends AppCompatActivity implements AppCompatSpinner.OnItemSelectedListener, View.OnClickListener{
 

@@ -1,4 +1,4 @@
-package com.structuretax.fragment;
+package com.structuremytax.fragment;
 
 /**
  * Created by apple on 08/04/17.

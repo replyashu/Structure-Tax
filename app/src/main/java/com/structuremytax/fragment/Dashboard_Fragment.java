@@ -1,16 +1,13 @@
-package com.structuretax.fragment;
+package com.structuremytax.fragment;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -19,9 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.structuretax.R;
-
-import java.math.BigDecimal;
+import com.structuremytax.R;
 
 /**
  * Created by apple on 08/04/17.
